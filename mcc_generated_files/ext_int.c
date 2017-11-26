@@ -28,6 +28,12 @@
 #include <xc.h>
 #include "ext_int.h"
 //***User Area Begin->code: Add External Interrupt handler specific headers 
+#include <pic18f43k22.h>
+#include "mcc.h"
+
+extern uint16_t tcrt[8];
+extern const int AN_CHANNEL[];
+extern void setTCRT(int pos, int value);
 
 //***User Area End->code: Add External Interrupt handler specific headers
 
@@ -43,7 +49,13 @@ void (*INT0_InterruptHandler)(void);
 void INT0_ISR(void)
 {
     //***User Area Begin->code***
-
+    for(int i = 0; i < 8; i++)
+    {
+        setTCRT(i, 1);
+        __delay_us(50);
+        tcrt[i] = ADC_GetConversion(AN_CHANNEL[i]);
+        setTCRT(i, 0);
+    }
     //***User Area End->code***
     
     EXT_INT0_InterruptFlagClear();

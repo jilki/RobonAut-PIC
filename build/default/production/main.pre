@@ -17163,7 +17163,15 @@ void main(void)
 
 SYSTEM_Initialize();
 
-# 175
+# 164
+(INTCONbits.GIE = 1);
+
+# 170
+(INTCONbits.PEIE = 1);
+
+
+
+
 PIN_MANAGER_Initialize();
 ADC_Initialize();
 
@@ -17171,20 +17179,10 @@ while (1)
 {
 
 
-for(int i = 0; i < 8; i++)
-{
-setTCRT(i, 1);
-_delay((unsigned long)((2)*(16000000/4000.0)));
 
-
-
-tcrt[i] = ADC_GetConversion(AN_CHANNEL[i]);
-setTCRT(i, 0);
-
-}
 drawToLeds();
 
-# 270
+# 260
 }
 }
 

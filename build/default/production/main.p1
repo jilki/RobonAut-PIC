@@ -62,16 +62,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "71 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
+"16896 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f45k22.h
+[s S818 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S818 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"16906
+[s S819 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S819 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"16916
+[s S820 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S820 . . GIEL GIEH ]
+"16895
+[u S817 `S818 1 `S819 1 `S820 1 ]
+[n S817 . . . . ]
+"16922
+[v _INTCONbits `VS817 ~T0 @X0 0 e@4082 ]
 "469 mcc_generated_files/pin_manager.h
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
 "142 mcc_generated_files/adc.h
 [v _ADC_Initialize `(v ~T0 @X0 0 ef ]
-[v F6934 `(v ~T0 @X0 1 tf1`ul ]
-"164 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18.h
-[v __delay `JF6934 ~T0 @X0 0 e ]
-[p i __delay ]
-"294 mcc_generated_files/adc.h
-[v _ADC_GetConversion `(ui ~T0 @X0 0 ef1`E12051 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -13565,6 +13573,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 145: SYSTEM_Initialize();
 "145
 [e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 164: (INTCONbits.GIE = 1);
+"164
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 170: (INTCONbits.PEIE = 1);
+"170
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
 [; ;main.c: 175: PIN_MANAGER_Initialize();
 "175
 [e ( _PIN_MANAGER_Initialize ..  ]
@@ -13577,49 +13591,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 179: {
 "179
 {
-[; ;main.c: 182: for(int i = 0; i < 8; i++)
-"182
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 8 `i 1726  ]
-[e $U 1727  ]
+[; ;main.c: 183: drawToLeds();
 "183
-[e :U 1726 ]
-[; ;main.c: 183: {
-{
-[; ;main.c: 184: setTCRT(i, 1);
-"184
-[e ( _setTCRT (2 , _i -> 1 `i ]
-[; ;main.c: 185: _delay((unsigned long)((2)*(16000000/4000.0)));
-"185
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;main.c: 189: tcrt[i] = ADC_GetConversion(AN_CHANNEL[i]);
-"189
-[e = *U + &U _tcrt * -> -> _i `ui `ux -> -> # *U &U _tcrt `ui `ux ( _ADC_GetConversion (1 -> *U + &U _AN_CHANNEL * -> -> _i `ui `ux -> -> # *U &U _AN_CHANNEL `ui `ux `E12051 ]
-[; ;main.c: 190: setTCRT(i, 0);
-"190
-[e ( _setTCRT (2 , _i -> 0 `i ]
-"192
-}
-"182
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 8 `i 1726  ]
-[e :U 1727 ]
-"192
-}
-[; ;main.c: 192: }
-[; ;main.c: 193: drawToLeds();
-"193
 [e ( _drawToLeds ..  ]
-"270
+"260
 }
 [e :U 1723 ]
 "178
 [e $U 1724  ]
 [e :U 1725 ]
-[; ;main.c: 270: }
-[; ;main.c: 271: }
-"271
+[; ;main.c: 260: }
+[; ;main.c: 261: }
+"261
 [e :UE 1722 ]
 }

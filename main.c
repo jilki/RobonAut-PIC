@@ -161,13 +161,13 @@ void main(void)
     //INTERRUPT_GlobalInterruptLowDisable();
 
     // Enable the Global Interrupts
-    //INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_GlobalInterruptEnable();
 
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
 
     // Enable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
@@ -179,17 +179,7 @@ void main(void)
     {
         // Add your application code
         
-        for(int i = 0; i < 8; i++)
-        {
-            setTCRT(i, 1);
-            __delay_ms(2);
-            //ADC_StartConversion(AN_CHANNEL[i]);
-            //while(!ADC_IsConversionDone());
-            //tcrt[i] = ADC_GetConversionResult();
-            tcrt[i] = ADC_GetConversion(AN_CHANNEL[i]);
-            setTCRT(i, 0);
-            //__delay_ms(20);
-        }
+
         drawToLeds();
        
         
