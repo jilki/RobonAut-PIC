@@ -15,6 +15,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ADC_GetConversion `(ui ~T0 @X0 0 ef1`E12066 ]
 "35 mcc_generated_files/ext_int.c
 [v _AN_CHANNEL `Ci ~T0 @X0 -> 0 `x e ]
+"37
+[v _toRedrawLeds `uc ~T0 @X0 0 e ]
 "16896 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f45k22.h
 [s S818 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S818 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -13206,6 +13208,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ext_int.c: 34: extern uint16_t tcrt[8];
 [; ;ext_int.c: 35: extern const int AN_CHANNEL[];
 [; ;ext_int.c: 36: extern void setTCRT(int pos, int value);
+[; ;ext_int.c: 37: extern uint8_t toRedrawLeds;
 "44 mcc_generated_files/ext_int.c
 [v _INT0_InterruptHandler `*F6952 ~T0 @X0 1 e ]
 [; ;ext_int.c: 44: void (*INT0_InterruptHandler)(void);
@@ -13249,87 +13252,90 @@ Version 3.2 HI-TECH Software Intermediate Code
 "58
 }
 [; ;ext_int.c: 58: }
-[; ;ext_int.c: 61: (INTCONbits.INT0IF = 0);
-"61
+[; ;ext_int.c: 59: toRedrawLeds = 1;
+"59
+[e = _toRedrawLeds -> -> 1 `i `uc ]
+[; ;ext_int.c: 62: (INTCONbits.INT0IF = 0);
+"62
 [e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;ext_int.c: 64: INT0_CallBack();
-"64
-[e ( _INT0_CallBack ..  ]
-[; ;ext_int.c: 65: }
+[; ;ext_int.c: 65: INT0_CallBack();
 "65
+[e ( _INT0_CallBack ..  ]
+[; ;ext_int.c: 66: }
+"66
 [e :UE 1692 ]
 }
-"70
-[v _INT0_CallBack `(v ~T0 @X0 1 ef ]
 "71
+[v _INT0_CallBack `(v ~T0 @X0 1 ef ]
+"72
 {
-[; ;ext_int.c: 70: void INT0_CallBack(void)
-[; ;ext_int.c: 71: {
+[; ;ext_int.c: 71: void INT0_CallBack(void)
+[; ;ext_int.c: 72: {
 [e :U _INT0_CallBack ]
 [f ]
-[; ;ext_int.c: 73: if(INT0_InterruptHandler)
-"73
-[e $ ! != _INT0_InterruptHandler -> -> 0 `i `*F6952 1697  ]
-[; ;ext_int.c: 74: {
+[; ;ext_int.c: 74: if(INT0_InterruptHandler)
 "74
-{
-[; ;ext_int.c: 75: INT0_InterruptHandler();
+[e $ ! != _INT0_InterruptHandler -> -> 0 `i `*F6952 1697  ]
+[; ;ext_int.c: 75: {
 "75
-[e ( *U _INT0_InterruptHandler ..  ]
+{
+[; ;ext_int.c: 76: INT0_InterruptHandler();
 "76
+[e ( *U _INT0_InterruptHandler ..  ]
+"77
 }
 [e :U 1697 ]
-[; ;ext_int.c: 76: }
 [; ;ext_int.c: 77: }
-"77
+[; ;ext_int.c: 78: }
+"78
 [e :UE 1696 ]
 }
-"82
+"83
 [v _INT0_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F6949 ]
 {
-[; ;ext_int.c: 82: void INT0_SetInterruptHandler(void (* InterruptHandler)(void)){
+[; ;ext_int.c: 83: void INT0_SetInterruptHandler(void (* InterruptHandler)(void)){
 [e :U _INT0_SetInterruptHandler ]
-[v F12125 `(v ~T0 @X0 0 tf ]
-[v _InterruptHandler `*F12125 ~T0 @X0 1 r1 ]
+[v F12126 `(v ~T0 @X0 0 tf ]
+[v _InterruptHandler `*F12126 ~T0 @X0 1 r1 ]
 [f ]
-[; ;ext_int.c: 83: INT0_InterruptHandler = InterruptHandler;
-"83
-[e = _INT0_InterruptHandler _InterruptHandler ]
-[; ;ext_int.c: 84: }
+[; ;ext_int.c: 84: INT0_InterruptHandler = InterruptHandler;
 "84
+[e = _INT0_InterruptHandler _InterruptHandler ]
+[; ;ext_int.c: 85: }
+"85
 [e :UE 1698 ]
 }
-"89
+"90
 [v _INT0_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;ext_int.c: 89: void INT0_DefaultInterruptHandler(void){
+[; ;ext_int.c: 90: void INT0_DefaultInterruptHandler(void){
 [e :U _INT0_DefaultInterruptHandler ]
 [f ]
-[; ;ext_int.c: 92: }
-"92
+[; ;ext_int.c: 93: }
+"93
 [e :UE 1699 ]
 }
-"102
-[v _EXT_INT_Initialize `(v ~T0 @X0 1 ef ]
 "103
+[v _EXT_INT_Initialize `(v ~T0 @X0 1 ef ]
+"104
 {
-[; ;ext_int.c: 102: void EXT_INT_Initialize(void)
-[; ;ext_int.c: 103: {
+[; ;ext_int.c: 103: void EXT_INT_Initialize(void)
+[; ;ext_int.c: 104: {
 [e :U _EXT_INT_Initialize ]
 [f ]
-[; ;ext_int.c: 111: (INTCONbits.INT0IF = 0);
-"111
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;ext_int.c: 112: (INTCON2bits.INTEDG0 = 1);
+[; ;ext_int.c: 112: (INTCONbits.INT0IF = 0);
 "112
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+[; ;ext_int.c: 113: (INTCON2bits.INTEDG0 = 1);
+"113
 [e = . . _INTCON2bits 1 6 -> -> 1 `i `uc ]
-[; ;ext_int.c: 114: INT0_SetInterruptHandler(INT0_DefaultInterruptHandler);
-"114
-[e ( _INT0_SetInterruptHandler (1 &U _INT0_DefaultInterruptHandler ]
-[; ;ext_int.c: 115: (INTCONbits.INT0IE = 1);
+[; ;ext_int.c: 115: INT0_SetInterruptHandler(INT0_DefaultInterruptHandler);
 "115
+[e ( _INT0_SetInterruptHandler (1 &U _INT0_DefaultInterruptHandler ]
+[; ;ext_int.c: 116: (INTCONbits.INT0IE = 1);
+"116
 [e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
-[; ;ext_int.c: 117: }
-"117
+[; ;ext_int.c: 118: }
+"118
 [e :UE 1700 ]
 }

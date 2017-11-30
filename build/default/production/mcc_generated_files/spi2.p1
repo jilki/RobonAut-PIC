@@ -95,6 +95,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S173 . . . . . . . . . . . . . . . . . . . . . . . . ]
 "3931
 [v _SSP2STATbits `VS173 ~T0 @X0 0 e@3949 ]
+"63 mcc_generated_files/spi2.c
+[v _toRedrawLeds `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -6681,276 +6683,277 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;spi2.h: 263: void SPI2_ClearWriteCollisionStatus(void);
 [; ;spi2.h: 288: bool SPI2_HasReceiveOverflowOccured(void);
 [; ;spi2.h: 312: void SPI2_ClearReceiveOverflowStatus(void);
-"63 mcc_generated_files/spi2.c
+[; ;spi2.c: 63: extern uint8_t toRedrawLeds;
+"65 mcc_generated_files/spi2.c
 [v _SPI2_Initialize `(v ~T0 @X0 1 ef ]
-"64
+"66
 {
-[; ;spi2.c: 63: void SPI2_Initialize(void)
-[; ;spi2.c: 64: {
+[; ;spi2.c: 65: void SPI2_Initialize(void)
+[; ;spi2.c: 66: {
 [e :U _SPI2_Initialize ]
 [f ]
-[; ;spi2.c: 68: SSP2STAT = 0x00;
-"68
+[; ;spi2.c: 70: SSP2STAT = 0x00;
+"70
 [e = _SSP2STAT -> -> 0 `i `uc ]
-[; ;spi2.c: 71: SSP2CON1 = 0x24;
-"71
+[; ;spi2.c: 73: SSP2CON1 = 0x24;
+"73
 [e = _SSP2CON1 -> -> 36 `i `uc ]
-[; ;spi2.c: 74: SSP2CON3 = 0x00;
-"74
+[; ;spi2.c: 76: SSP2CON3 = 0x00;
+"76
 [e = _SSP2CON3 -> -> 0 `i `uc ]
-[; ;spi2.c: 75: }
-"75
+[; ;spi2.c: 77: }
+"77
 [e :UE 846 ]
 }
-"77
-[v _SPI2_Exchange8bit `(uc ~T0 @X0 1 ef1`uc ]
-"78
-{
-[; ;spi2.c: 77: uint8_t SPI2_Exchange8bit(uint8_t data)
-[; ;spi2.c: 78: {
-[e :U _SPI2_Exchange8bit ]
-"77
-[v _data `uc ~T0 @X0 1 r1 ]
-"78
-[f ]
 "79
+[v _SPI2_Exchange8bit `(uc ~T0 @X0 1 ef1`uc ]
+"80
+{
+[; ;spi2.c: 79: uint8_t SPI2_Exchange8bit(uint8_t data)
+[; ;spi2.c: 80: {
+[e :U _SPI2_Exchange8bit ]
+"79
+[v _data `uc ~T0 @X0 1 r1 ]
+"80
+[f ]
+"81
 [v _dummyRead `uc ~T0 @X0 1 a ]
-[; ;spi2.c: 79: uint8_t dummyRead = SSP2BUF;
+[; ;spi2.c: 81: uint8_t dummyRead = SSP2BUF;
 [e = _dummyRead _SSP2BUF ]
-[; ;spi2.c: 82: SSP2CON1bits.WCOL = 0;
-"82
-[e = . . _SSP2CON1bits 0 4 -> -> 0 `i `uc ]
-[; ;spi2.c: 84: SSP2BUF = data;
+[; ;spi2.c: 84: SSP2CON1bits.WCOL = 0;
 "84
-[e = _SSP2BUF _data ]
-[; ;spi2.c: 86: while(SSP2STATbits.BF == 0x0)
+[e = . . _SSP2CON1bits 0 4 -> -> 0 `i `uc ]
+[; ;spi2.c: 86: SSP2BUF = data;
 "86
+[e = _SSP2BUF _data ]
+[; ;spi2.c: 88: while(SSP2STATbits.BF == 0x0 && !toRedrawLeds)
+"88
 [e $U 848  ]
 [e :U 849 ]
-[; ;spi2.c: 87: {
-"87
+[; ;spi2.c: 89: {
+"89
 {
-"88
+"90
 }
 [e :U 848 ]
-"86
-[e $ == -> . . _SSP2STATbits 2 0 `i -> 0 `i 849  ]
+"88
+[e $ && == -> . . _SSP2STATbits 2 0 `i -> 0 `i ! != -> _toRedrawLeds `i -> -> -> 0 `i `uc `i 849  ]
 [e :U 850 ]
-[; ;spi2.c: 88: }
-[; ;spi2.c: 90: return (SSP2BUF);
-"90
+[; ;spi2.c: 90: }
+[; ;spi2.c: 92: return (SSP2BUF);
+"92
 [e ) _SSP2BUF ]
 [e $UE 847  ]
-[; ;spi2.c: 91: }
-"91
+[; ;spi2.c: 93: }
+"93
 [e :UE 847 ]
 }
-"93
+"95
 [v _SPI2_Exchange8bitBuffer `(uc ~T0 @X0 1 ef3`*uc`uc`*uc ]
-"94
+"96
 {
-[; ;spi2.c: 93: uint8_t SPI2_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut)
-[; ;spi2.c: 94: {
+[; ;spi2.c: 95: uint8_t SPI2_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut)
+[; ;spi2.c: 96: {
 [e :U _SPI2_Exchange8bitBuffer ]
-"93
+"95
 [v _dataIn `*uc ~T0 @X0 1 r1 ]
 [v _bufLen `uc ~T0 @X0 1 r2 ]
 [v _dataOut `*uc ~T0 @X0 1 r3 ]
-"94
-[f ]
-"95
-[v _bytesWritten `uc ~T0 @X0 1 a ]
-[; ;spi2.c: 95: uint8_t bytesWritten = 0;
-[e = _bytesWritten -> -> 0 `i `uc ]
 "96
-[v _dummyRead `uc ~T0 @X0 1 a ]
-[; ;spi2.c: 96: uint8_t dummyRead;
-[; ;spi2.c: 98: if(bufLen != 0)
+[f ]
+"97
+[v _bytesWritten `uc ~T0 @X0 1 a ]
+[; ;spi2.c: 97: uint8_t bytesWritten = 0;
+[e = _bytesWritten -> -> 0 `i `uc ]
 "98
-[e $ ! != -> _bufLen `i -> 0 `i 852  ]
-[; ;spi2.c: 99: {
-"99
-{
-[; ;spi2.c: 100: if(dataIn != (0))
+[v _dummyRead `uc ~T0 @X0 1 a ]
+[; ;spi2.c: 98: uint8_t dummyRead;
+[; ;spi2.c: 100: if(bufLen != 0)
 "100
-[e $ ! != _dataIn -> -> 0 `i `*uc 853  ]
+[e $ ! != -> _bufLen `i -> 0 `i 852  ]
 [; ;spi2.c: 101: {
 "101
 {
-[; ;spi2.c: 102: while(bytesWritten < bufLen)
+[; ;spi2.c: 102: if(dataIn != (0))
 "102
-[e $U 854  ]
-[e :U 855 ]
+[e $ ! != _dataIn -> -> 0 `i `*uc 853  ]
 [; ;spi2.c: 103: {
 "103
 {
-[; ;spi2.c: 104: if(dataOut == (0))
+[; ;spi2.c: 104: while(bytesWritten < bufLen)
 "104
-[e $ ! == _dataOut -> -> 0 `i `*uc 857  ]
+[e $U 854  ]
+[e :U 855 ]
 [; ;spi2.c: 105: {
 "105
 {
-[; ;spi2.c: 106: dummyRead = SPI2_Exchange8bit(dataIn[bytesWritten]);
+[; ;spi2.c: 106: if(dataOut == (0))
 "106
-[e = _dummyRead ( _SPI2_Exchange8bit (1 *U + _dataIn * -> _bytesWritten `ux -> -> # *U _dataIn `ui `ux ]
+[e $ ! == _dataOut -> -> 0 `i `*uc 857  ]
+[; ;spi2.c: 107: {
 "107
-}
-[; ;spi2.c: 107: }
-[e $U 858  ]
-"108
-[e :U 857 ]
-[; ;spi2.c: 108: else
-[; ;spi2.c: 109: {
-"109
 {
-[; ;spi2.c: 110: dataOut[bytesWritten] = SPI2_Exchange8bit(dataIn[bytesWritten]);
+[; ;spi2.c: 108: dummyRead = SPI2_Exchange8bit(dataIn[bytesWritten]);
+"108
+[e = _dummyRead ( _SPI2_Exchange8bit (1 *U + _dataIn * -> _bytesWritten `ux -> -> # *U _dataIn `ui `ux ]
+"109
+}
+[; ;spi2.c: 109: }
+[e $U 858  ]
 "110
-[e = *U + _dataOut * -> _bytesWritten `ux -> -> # *U _dataOut `ui `ux ( _SPI2_Exchange8bit (1 *U + _dataIn * -> _bytesWritten `ux -> -> # *U _dataIn `ui `ux ]
+[e :U 857 ]
+[; ;spi2.c: 110: else
+[; ;spi2.c: 111: {
 "111
+{
+[; ;spi2.c: 112: dataOut[bytesWritten] = SPI2_Exchange8bit(dataIn[bytesWritten]);
+"112
+[e = *U + _dataOut * -> _bytesWritten `ux -> -> # *U _dataOut `ui `ux ( _SPI2_Exchange8bit (1 *U + _dataIn * -> _bytesWritten `ux -> -> # *U _dataIn `ui `ux ]
+"113
 }
 [e :U 858 ]
-[; ;spi2.c: 111: }
-[; ;spi2.c: 113: bytesWritten++;
-"113
+[; ;spi2.c: 113: }
+[; ;spi2.c: 115: bytesWritten++;
+"115
 [e ++ _bytesWritten -> -> 1 `i `uc ]
-"114
+"116
 }
 [e :U 854 ]
-"102
+"104
 [e $ < -> _bytesWritten `i -> _bufLen `i 855  ]
 [e :U 856 ]
-"115
-}
-[; ;spi2.c: 114: }
-[; ;spi2.c: 115: }
-[e $U 859  ]
-"116
-[e :U 853 ]
-[; ;spi2.c: 116: else
-[; ;spi2.c: 117: {
 "117
-{
-[; ;spi2.c: 118: if(dataOut != (0))
+}
+[; ;spi2.c: 116: }
+[; ;spi2.c: 117: }
+[e $U 859  ]
 "118
-[e $ ! != _dataOut -> -> 0 `i `*uc 860  ]
+[e :U 853 ]
+[; ;spi2.c: 118: else
 [; ;spi2.c: 119: {
 "119
 {
-[; ;spi2.c: 120: while(bytesWritten < bufLen )
+[; ;spi2.c: 120: if(dataOut != (0))
 "120
-[e $U 861  ]
-[e :U 862 ]
+[e $ ! != _dataOut -> -> 0 `i `*uc 860  ]
 [; ;spi2.c: 121: {
 "121
 {
-[; ;spi2.c: 122: dataOut[bytesWritten] = SPI2_Exchange8bit(0x0);
+[; ;spi2.c: 122: while(bytesWritten < bufLen )
 "122
-[e = *U + _dataOut * -> _bytesWritten `ux -> -> # *U _dataOut `ui `ux ( _SPI2_Exchange8bit (1 -> -> 0 `i `uc ]
-[; ;spi2.c: 123: bytesWritten++;
+[e $U 861  ]
+[e :U 862 ]
+[; ;spi2.c: 123: {
 "123
-[e ++ _bytesWritten -> -> 1 `i `uc ]
+{
+[; ;spi2.c: 124: dataOut[bytesWritten] = SPI2_Exchange8bit(0x0);
 "124
-}
-[e :U 861 ]
-"120
-[e $ < -> _bytesWritten `i -> _bufLen `i 862  ]
-[e :U 863 ]
+[e = *U + _dataOut * -> _bytesWritten `ux -> -> # *U _dataOut `ui `ux ( _SPI2_Exchange8bit (1 -> -> 0 `i `uc ]
+[; ;spi2.c: 125: bytesWritten++;
 "125
-}
-[e :U 860 ]
+[e ++ _bytesWritten -> -> 1 `i `uc ]
 "126
 }
-[e :U 859 ]
+[e :U 861 ]
+"122
+[e $ < -> _bytesWritten `i -> _bufLen `i 862  ]
+[e :U 863 ]
 "127
 }
+[e :U 860 ]
+"128
+}
+[e :U 859 ]
+"129
+}
 [e :U 852 ]
-[; ;spi2.c: 124: }
-[; ;spi2.c: 125: }
 [; ;spi2.c: 126: }
 [; ;spi2.c: 127: }
-[; ;spi2.c: 129: return bytesWritten;
-"129
+[; ;spi2.c: 128: }
+[; ;spi2.c: 129: }
+[; ;spi2.c: 131: return bytesWritten;
+"131
 [e ) _bytesWritten ]
 [e $UE 851  ]
-[; ;spi2.c: 130: }
-"130
+[; ;spi2.c: 132: }
+"132
 [e :UE 851 ]
 }
-"132
+"134
 [v _SPI2_IsBufferFull `(uc ~T0 @X0 1 ef ]
-"133
+"135
 {
-[; ;spi2.c: 132: bool SPI2_IsBufferFull(void)
-[; ;spi2.c: 133: {
+[; ;spi2.c: 134: bool SPI2_IsBufferFull(void)
+[; ;spi2.c: 135: {
 [e :U _SPI2_IsBufferFull ]
 [f ]
-[; ;spi2.c: 134: return (SSP2STATbits.BF);
-"134
+[; ;spi2.c: 136: return (SSP2STATbits.BF);
+"136
 [e ) . . _SSP2STATbits 2 0 ]
 [e $UE 864  ]
-[; ;spi2.c: 135: }
-"135
+[; ;spi2.c: 137: }
+"137
 [e :UE 864 ]
 }
-"137
+"139
 [v _SPI2_HasWriteCollisionOccured `(uc ~T0 @X0 1 ef ]
-"138
+"140
 {
-[; ;spi2.c: 137: bool SPI2_HasWriteCollisionOccured(void)
-[; ;spi2.c: 138: {
+[; ;spi2.c: 139: bool SPI2_HasWriteCollisionOccured(void)
+[; ;spi2.c: 140: {
 [e :U _SPI2_HasWriteCollisionOccured ]
 [f ]
-[; ;spi2.c: 139: return (SSP2CON1bits.WCOL);
-"139
+[; ;spi2.c: 141: return (SSP2CON1bits.WCOL);
+"141
 [e ) . . _SSP2CON1bits 0 4 ]
 [e $UE 865  ]
-[; ;spi2.c: 140: }
-"140
+[; ;spi2.c: 142: }
+"142
 [e :UE 865 ]
 }
-"142
+"144
 [v _SPI2_ClearWriteCollisionStatus `(v ~T0 @X0 1 ef ]
-"143
+"145
 {
-[; ;spi2.c: 142: void SPI2_ClearWriteCollisionStatus(void)
-[; ;spi2.c: 143: {
+[; ;spi2.c: 144: void SPI2_ClearWriteCollisionStatus(void)
+[; ;spi2.c: 145: {
 [e :U _SPI2_ClearWriteCollisionStatus ]
 [f ]
-[; ;spi2.c: 144: SSP2CON1bits.WCOL = 0;
-"144
+[; ;spi2.c: 146: SSP2CON1bits.WCOL = 0;
+"146
 [e = . . _SSP2CON1bits 0 4 -> -> 0 `i `uc ]
-[; ;spi2.c: 145: }
-"145
+[; ;spi2.c: 147: }
+"147
 [e :UE 866 ]
 }
-"147
+"149
 [v _SPI2_HasReceiveOverflowOccured `(uc ~T0 @X0 1 ef ]
-"148
+"150
 {
-[; ;spi2.c: 147: bool SPI2_HasReceiveOverflowOccured(void)
-[; ;spi2.c: 148: {
+[; ;spi2.c: 149: bool SPI2_HasReceiveOverflowOccured(void)
+[; ;spi2.c: 150: {
 [e :U _SPI2_HasReceiveOverflowOccured ]
 [f ]
-[; ;spi2.c: 149: return (SSP2CON1bits.SSPOV);
-"149
+[; ;spi2.c: 151: return (SSP2CON1bits.SSPOV);
+"151
 [e ) . . _SSP2CON1bits 0 3 ]
 [e $UE 867  ]
-[; ;spi2.c: 150: }
-"150
+[; ;spi2.c: 152: }
+"152
 [e :UE 867 ]
 }
-"152
+"154
 [v _SPI2_ClearReceiveOverflowStatus `(v ~T0 @X0 1 ef ]
-"153
+"155
 {
-[; ;spi2.c: 152: void SPI2_ClearReceiveOverflowStatus(void)
-[; ;spi2.c: 153: {
+[; ;spi2.c: 154: void SPI2_ClearReceiveOverflowStatus(void)
+[; ;spi2.c: 155: {
 [e :U _SPI2_ClearReceiveOverflowStatus ]
 [f ]
-[; ;spi2.c: 154: SSP2CON1bits.SSPOV = 0;
-"154
+[; ;spi2.c: 156: SSP2CON1bits.SSPOV = 0;
+"156
 [e = . . _SSP2CON1bits 0 3 -> -> 0 `i `uc ]
-[; ;spi2.c: 155: }
-"155
+[; ;spi2.c: 157: }
+"157
 [e :UE 868 ]
 }

@@ -34,7 +34,7 @@
 extern uint16_t tcrt[8];
 extern const int AN_CHANNEL[];
 extern void setTCRT(int pos, int value);
-
+extern uint8_t toRedrawLeds;
 //***User Area End->code: Add External Interrupt handler specific headers
 
 /**
@@ -56,6 +56,7 @@ void INT0_ISR(void)
         tcrt[i] = ADC_GetConversion(AN_CHANNEL[i]);
         setTCRT(i, 0);
     }
+    toRedrawLeds = 1;
     //***User Area End->code***
     
     EXT_INT0_InterruptFlagClear();

@@ -17073,6 +17073,7 @@ void OSCILLATOR_Initialize(void);
 extern uint16_t tcrt[8];
 extern const int AN_CHANNEL[];
 extern void setTCRT(int pos, int value);
+extern uint8_t toRedrawLeds;
 
 # 44
 void (*INT0_InterruptHandler)(void);
@@ -17088,6 +17089,7 @@ _delay((unsigned long)((50)*(16000000/4000000.0)));
 tcrt[i] = ADC_GetConversion(AN_CHANNEL[i]);
 setTCRT(i, 0);
 }
+toRedrawLeds = 1;
 
 
 (INTCONbits.INT0IF = 0);
@@ -17096,7 +17098,7 @@ setTCRT(i, 0);
 INT0_CallBack();
 }
 
-# 70
+# 71
 void INT0_CallBack(void)
 {
 
@@ -17106,22 +17108,22 @@ INT0_InterruptHandler();
 }
 }
 
-# 82
+# 83
 void INT0_SetInterruptHandler(void (* InterruptHandler)(void)){
 INT0_InterruptHandler = InterruptHandler;
 }
 
-# 89
+# 90
 void INT0_DefaultInterruptHandler(void){
 
 
 }
 
-# 102
+# 103
 void EXT_INT_Initialize(void)
 {
 
-# 111
+# 112
 (INTCONbits.INT0IF = 0);
 (INTCON2bits.INTEDG0 = 1);
 

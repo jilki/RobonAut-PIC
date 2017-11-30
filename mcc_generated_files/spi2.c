@@ -60,6 +60,8 @@
   Section: Module APIs
 */
 
+extern uint8_t toRedrawLeds;
+
 void SPI2_Initialize(void)
 {
     // Set the SPI2 module to the options selected in the User Interface
@@ -83,7 +85,7 @@ uint8_t SPI2_Exchange8bit(uint8_t data)
 
     SSP2BUF = data;
 
-    while(SSP2STATbits.BF == SPI_RX_IN_PROGRESS)
+    while(SSP2STATbits.BF == SPI_RX_IN_PROGRESS && !toRedrawLeds)
     {
     }
 

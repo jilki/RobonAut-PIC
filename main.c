@@ -60,6 +60,8 @@ void setLed(int pos, int value);
 void setTCRT(int pos, int value);
 void main(void);
 
+uint8_t toRedrawLeds = 0;
+
 void setTCRT(int pos, int value)
 {
         switch(pos)
@@ -181,8 +183,17 @@ void main(void)
         
 
         drawToLeds();
+        toRedrawLeds = 0;
        
+        uint8_t ledPositionToSend;
+        uint8_t dummyRead;
         
+        while(!toRedrawLeds)
+        {
+            ledPositionToSend = SPI2_Exchange8bit(0b11100011);
+            if(ledPositionToSend < 8)
+                dummyRead = SPI2_Exchange8bit((uint8_t)(tcrt[ledPositionToSend] >> 8));
+        }
         //IO_RC4_SetHigh();
 /*        IO_RC5_SetHigh();
         __delay_ms(20);

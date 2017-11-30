@@ -13267,100 +13267,106 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 60: void setTCRT(int pos, int value);
 [; ;main.c: 61: void main(void);
 "63
-[v _setTCRT `(v ~T0 @X0 1 ef2`i`i ]
-"64
-{
-[; ;main.c: 63: void setTCRT(int pos, int value)
-[; ;main.c: 64: {
-[e :U _setTCRT ]
-"63
-[v _pos `i ~T0 @X0 1 r1 ]
-[v _value `i ~T0 @X0 1 r2 ]
-"64
-[f ]
-[; ;main.c: 65: switch(pos)
+[v _toRedrawLeds `uc ~T0 @X0 1 e ]
+[i _toRedrawLeds
+-> -> 0 `i `uc
+]
+[; ;main.c: 63: uint8_t toRedrawLeds = 0;
 "65
-[e $U 1694  ]
-[; ;main.c: 66: {
+[v _setTCRT `(v ~T0 @X0 1 ef2`i`i ]
 "66
 {
-[; ;main.c: 67: case 0:
-"67
-[e :U 1695 ]
-[; ;main.c: 68: LATCbits.LATC5 = value;
-"68
-[e = . . _LATCbits 0 5 -> _value `uc ]
-[; ;main.c: 69: break;
-"69
-[e $U 1693  ]
-[; ;main.c: 70: case 1:
-"70
-[e :U 1696 ]
-[; ;main.c: 71: LATDbits.LATD6 = value;
-"71
-[e = . . _LATDbits 0 6 -> _value `uc ]
-[; ;main.c: 72: break;
-"72
-[e $U 1693  ]
-[; ;main.c: 73: case 2:
-"73
-[e :U 1697 ]
-[; ;main.c: 74: LATBbits.LATB2 = value;
-"74
-[e = . . _LATBbits 0 2 -> _value `uc ]
-[; ;main.c: 75: break;
-"75
-[e $U 1693  ]
-[; ;main.c: 76: case 3:
-"76
-[e :U 1698 ]
-[; ;main.c: 77: LATBbits.LATB4 = value;
-"77
-[e = . . _LATBbits 0 4 -> _value `uc ]
-[; ;main.c: 78: break;
-"78
-[e $U 1693  ]
-[; ;main.c: 79: case 4:
-"79
-[e :U 1699 ]
-[; ;main.c: 80: LATAbits.LATA2 = value;
-"80
-[e = . . _LATAbits 0 2 -> _value `uc ]
-[; ;main.c: 81: break;
-"81
-[e $U 1693  ]
-[; ;main.c: 82: case 5:
-"82
-[e :U 1700 ]
-[; ;main.c: 83: LATAbits.LATA4 = value;
-"83
-[e = . . _LATAbits 0 4 -> _value `uc ]
-[; ;main.c: 84: break;
-"84
-[e $U 1693  ]
-[; ;main.c: 85: case 6:
-"85
-[e :U 1701 ]
-[; ;main.c: 86: LATEbits.LATE1 = value;
-"86
-[e = . . _LATEbits 0 1 -> _value `uc ]
-[; ;main.c: 87: break;
-"87
-[e $U 1693  ]
-[; ;main.c: 88: case 7:
-"88
-[e :U 1702 ]
-[; ;main.c: 89: LATCbits.LATC2 = value;
-"89
-[e = . . _LATCbits 0 2 -> _value `uc ]
-[; ;main.c: 90: break;
-"90
-[e $U 1693  ]
-"91
-}
-[; ;main.c: 91: }
-[e $U 1693  ]
+[; ;main.c: 65: void setTCRT(int pos, int value)
+[; ;main.c: 66: {
+[e :U _setTCRT ]
 "65
+[v _pos `i ~T0 @X0 1 r1 ]
+[v _value `i ~T0 @X0 1 r2 ]
+"66
+[f ]
+[; ;main.c: 67: switch(pos)
+"67
+[e $U 1694  ]
+[; ;main.c: 68: {
+"68
+{
+[; ;main.c: 69: case 0:
+"69
+[e :U 1695 ]
+[; ;main.c: 70: LATCbits.LATC5 = value;
+"70
+[e = . . _LATCbits 0 5 -> _value `uc ]
+[; ;main.c: 71: break;
+"71
+[e $U 1693  ]
+[; ;main.c: 72: case 1:
+"72
+[e :U 1696 ]
+[; ;main.c: 73: LATDbits.LATD6 = value;
+"73
+[e = . . _LATDbits 0 6 -> _value `uc ]
+[; ;main.c: 74: break;
+"74
+[e $U 1693  ]
+[; ;main.c: 75: case 2:
+"75
+[e :U 1697 ]
+[; ;main.c: 76: LATBbits.LATB2 = value;
+"76
+[e = . . _LATBbits 0 2 -> _value `uc ]
+[; ;main.c: 77: break;
+"77
+[e $U 1693  ]
+[; ;main.c: 78: case 3:
+"78
+[e :U 1698 ]
+[; ;main.c: 79: LATBbits.LATB4 = value;
+"79
+[e = . . _LATBbits 0 4 -> _value `uc ]
+[; ;main.c: 80: break;
+"80
+[e $U 1693  ]
+[; ;main.c: 81: case 4:
+"81
+[e :U 1699 ]
+[; ;main.c: 82: LATAbits.LATA2 = value;
+"82
+[e = . . _LATAbits 0 2 -> _value `uc ]
+[; ;main.c: 83: break;
+"83
+[e $U 1693  ]
+[; ;main.c: 84: case 5:
+"84
+[e :U 1700 ]
+[; ;main.c: 85: LATAbits.LATA4 = value;
+"85
+[e = . . _LATAbits 0 4 -> _value `uc ]
+[; ;main.c: 86: break;
+"86
+[e $U 1693  ]
+[; ;main.c: 87: case 6:
+"87
+[e :U 1701 ]
+[; ;main.c: 88: LATEbits.LATE1 = value;
+"88
+[e = . . _LATEbits 0 1 -> _value `uc ]
+[; ;main.c: 89: break;
+"89
+[e $U 1693  ]
+[; ;main.c: 90: case 7:
+"90
+[e :U 1702 ]
+[; ;main.c: 91: LATCbits.LATC2 = value;
+"91
+[e = . . _LATCbits 0 2 -> _value `uc ]
+[; ;main.c: 92: break;
+"92
+[e $U 1693  ]
+"93
+}
+[; ;main.c: 93: }
+[e $U 1693  ]
+"67
 [e :U 1694 ]
 [e [\ _pos , $ -> 0 `i 1695
  , $ -> 1 `i 1696
@@ -13371,107 +13377,107 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> 6 `i 1701
  , $ -> 7 `i 1702
  1693 ]
-"91
+"93
 [e :U 1693 ]
-[; ;main.c: 92: }
-"92
+[; ;main.c: 94: }
+"94
 [e :UE 1692 ]
 }
-"94
-[v _setLed `(v ~T0 @X0 1 ef2`i`i ]
-"95
-{
-[; ;main.c: 94: void setLed(int pos, int value)
-[; ;main.c: 95: {
-[e :U _setLed ]
-"94
-[v _pos `i ~T0 @X0 1 r1 ]
-[v _value `i ~T0 @X0 1 r2 ]
-"95
-[f ]
-[; ;main.c: 96: switch(pos)
 "96
-[e $U 1705  ]
-[; ;main.c: 97: {
+[v _setLed `(v ~T0 @X0 1 ef2`i`i ]
 "97
 {
-[; ;main.c: 98: case 0:
-"98
-[e :U 1706 ]
-[; ;main.c: 99: LATCbits.LATC4 = value;
-"99
-[e = . . _LATCbits 0 4 -> _value `uc ]
-[; ;main.c: 100: break;
-"100
-[e $U 1704  ]
-[; ;main.c: 101: case 1:
-"101
-[e :U 1707 ]
-[; ;main.c: 102: LATDbits.LATD5 = value;
-"102
-[e = . . _LATDbits 0 5 -> _value `uc ]
-[; ;main.c: 103: break;
-"103
-[e $U 1704  ]
-[; ;main.c: 104: case 2:
-"104
-[e :U 1708 ]
-[; ;main.c: 105: LATBbits.LATB1 = value;
-"105
-[e = . . _LATBbits 0 1 -> _value `uc ]
-[; ;main.c: 106: break;
-"106
-[e $U 1704  ]
-[; ;main.c: 107: case 3:
-"107
-[e :U 1709 ]
-[; ;main.c: 108: LATDbits.LATD2 = value;
-"108
-[e = . . _LATDbits 0 2 -> _value `uc ]
-[; ;main.c: 109: break;
-"109
-[e $U 1704  ]
-[; ;main.c: 110: case 4:
-"110
-[e :U 1710 ]
-[; ;main.c: 111: LATAbits.LATA0 = value;
-"111
-[e = . . _LATAbits 0 0 -> _value `uc ]
-[; ;main.c: 112: break;
-"112
-[e $U 1704  ]
-[; ;main.c: 113: case 5:
-"113
-[e :U 1711 ]
-[; ;main.c: 114: LATAbits.LATA3 = value;
-"114
-[e = . . _LATAbits 0 3 -> _value `uc ]
-[; ;main.c: 115: break;
-"115
-[e $U 1704  ]
-[; ;main.c: 116: case 6:
-"116
-[e :U 1712 ]
-[; ;main.c: 117: LATEbits.LATE0 = value;
-"117
-[e = . . _LATEbits 0 0 -> _value `uc ]
-[; ;main.c: 118: break;
-"118
-[e $U 1704  ]
-[; ;main.c: 119: case 7:
-"119
-[e :U 1713 ]
-[; ;main.c: 120: LATCbits.LATC1 = value;
-"120
-[e = . . _LATCbits 0 1 -> _value `uc ]
-[; ;main.c: 121: break;
-"121
-[e $U 1704  ]
-"122
-}
-[; ;main.c: 122: }
-[e $U 1704  ]
+[; ;main.c: 96: void setLed(int pos, int value)
+[; ;main.c: 97: {
+[e :U _setLed ]
 "96
+[v _pos `i ~T0 @X0 1 r1 ]
+[v _value `i ~T0 @X0 1 r2 ]
+"97
+[f ]
+[; ;main.c: 98: switch(pos)
+"98
+[e $U 1705  ]
+[; ;main.c: 99: {
+"99
+{
+[; ;main.c: 100: case 0:
+"100
+[e :U 1706 ]
+[; ;main.c: 101: LATCbits.LATC4 = value;
+"101
+[e = . . _LATCbits 0 4 -> _value `uc ]
+[; ;main.c: 102: break;
+"102
+[e $U 1704  ]
+[; ;main.c: 103: case 1:
+"103
+[e :U 1707 ]
+[; ;main.c: 104: LATDbits.LATD5 = value;
+"104
+[e = . . _LATDbits 0 5 -> _value `uc ]
+[; ;main.c: 105: break;
+"105
+[e $U 1704  ]
+[; ;main.c: 106: case 2:
+"106
+[e :U 1708 ]
+[; ;main.c: 107: LATBbits.LATB1 = value;
+"107
+[e = . . _LATBbits 0 1 -> _value `uc ]
+[; ;main.c: 108: break;
+"108
+[e $U 1704  ]
+[; ;main.c: 109: case 3:
+"109
+[e :U 1709 ]
+[; ;main.c: 110: LATDbits.LATD2 = value;
+"110
+[e = . . _LATDbits 0 2 -> _value `uc ]
+[; ;main.c: 111: break;
+"111
+[e $U 1704  ]
+[; ;main.c: 112: case 4:
+"112
+[e :U 1710 ]
+[; ;main.c: 113: LATAbits.LATA0 = value;
+"113
+[e = . . _LATAbits 0 0 -> _value `uc ]
+[; ;main.c: 114: break;
+"114
+[e $U 1704  ]
+[; ;main.c: 115: case 5:
+"115
+[e :U 1711 ]
+[; ;main.c: 116: LATAbits.LATA3 = value;
+"116
+[e = . . _LATAbits 0 3 -> _value `uc ]
+[; ;main.c: 117: break;
+"117
+[e $U 1704  ]
+[; ;main.c: 118: case 6:
+"118
+[e :U 1712 ]
+[; ;main.c: 119: LATEbits.LATE0 = value;
+"119
+[e = . . _LATEbits 0 0 -> _value `uc ]
+[; ;main.c: 120: break;
+"120
+[e $U 1704  ]
+[; ;main.c: 121: case 7:
+"121
+[e :U 1713 ]
+[; ;main.c: 122: LATCbits.LATC1 = value;
+"122
+[e = . . _LATCbits 0 1 -> _value `uc ]
+[; ;main.c: 123: break;
+"123
+[e $U 1704  ]
+"124
+}
+[; ;main.c: 124: }
+[e $U 1704  ]
+"98
 [e :U 1705 ]
 [e [\ _pos , $ -> 0 `i 1706
  , $ -> 1 `i 1707
@@ -13482,126 +13488,159 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> 6 `i 1712
  , $ -> 7 `i 1713
  1704 ]
-"122
+"124
 [e :U 1704 ]
-[; ;main.c: 123: }
-"123
+[; ;main.c: 125: }
+"125
 [e :UE 1703 ]
 }
-"125
+"127
 [v _drawToLeds `(v ~T0 @X0 1 ef ]
-"126
+"128
 {
-[; ;main.c: 125: void drawToLeds()
-[; ;main.c: 126: {
+[; ;main.c: 127: void drawToLeds()
+[; ;main.c: 128: {
 [e :U _drawToLeds ]
 [f ]
-[; ;main.c: 127: for(int i = 0; i<8; i++)
-"127
+[; ;main.c: 129: for(int i = 0; i<8; i++)
+"129
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $ < _i -> 8 `i 1715  ]
 [e $U 1716  ]
-"128
+"130
 [e :U 1715 ]
-[; ;main.c: 128: setLed(i, tcrt[i]<TRESHOLD);
+[; ;main.c: 130: setLed(i, tcrt[i]<TRESHOLD);
 [e ( _setLed (2 , _i -> < *U + &U _tcrt * -> -> _i `ui `ux -> -> # *U &U _tcrt `ui `ux -> _TRESHOLD `ui `i ]
-"127
+"129
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 8 `i 1715  ]
 [e :U 1716 ]
-"128
+"130
 }
-[; ;main.c: 129: }
-"129
+[; ;main.c: 131: }
+"131
 [e :UE 1714 ]
 }
-"131
+"133
 [v _sendOverSpi `(v ~T0 @X0 1 ef ]
-"132
+"134
 {
-[; ;main.c: 131: void sendOverSpi()
-[; ;main.c: 132: {
+[; ;main.c: 133: void sendOverSpi()
+[; ;main.c: 134: {
 [e :U _sendOverSpi ]
 [f ]
-"133
+"135
 [v _readDummy `i ~T0 @X0 1 a ]
-[; ;main.c: 133: int readDummy;
-[; ;main.c: 134: for(int i = 0; i<8; i++)
-"134
+[; ;main.c: 135: int readDummy;
+[; ;main.c: 136: for(int i = 0; i<8; i++)
+"136
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $ < _i -> 8 `i 1719  ]
 [e $U 1720  ]
-"135
-[e :U 1719 ]
-[; ;main.c: 135: {
-{
-[; ;main.c: 136: readDummy = SPI2_Exchange8bit((char)i);
-"136
-[e = _readDummy -> ( _SPI2_Exchange8bit (1 -> _i `uc `i ]
-[; ;main.c: 137: readDummy = SPI2_Exchange8bit((char)(tcrt[i]>>8));
 "137
-[e = _readDummy -> ( _SPI2_Exchange8bit (1 -> >> *U + &U _tcrt * -> -> _i `ui `ux -> -> # *U &U _tcrt `ui `ux -> 8 `i `uc `i ]
-[; ;main.c: 138: readDummy = SPI2_Exchange8bit((char)tcrt[i]);
+[e :U 1719 ]
+[; ;main.c: 137: {
+{
+[; ;main.c: 138: readDummy = SPI2_Exchange8bit((char)i);
 "138
-[e = _readDummy -> ( _SPI2_Exchange8bit (1 -> *U + &U _tcrt * -> -> _i `ui `ux -> -> # *U &U _tcrt `ui `ux `uc `i ]
+[e = _readDummy -> ( _SPI2_Exchange8bit (1 -> _i `uc `i ]
+[; ;main.c: 139: readDummy = SPI2_Exchange8bit((char)(tcrt[i]>>8));
 "139
+[e = _readDummy -> ( _SPI2_Exchange8bit (1 -> >> *U + &U _tcrt * -> -> _i `ui `ux -> -> # *U &U _tcrt `ui `ux -> 8 `i `uc `i ]
+[; ;main.c: 140: readDummy = SPI2_Exchange8bit((char)tcrt[i]);
+"140
+[e = _readDummy -> ( _SPI2_Exchange8bit (1 -> *U + &U _tcrt * -> -> _i `ui `ux -> -> # *U &U _tcrt `ui `ux `uc `i ]
+"141
 }
-"134
+"136
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 8 `i 1719  ]
 [e :U 1720 ]
-"139
+"141
 }
-[; ;main.c: 139: }
-[; ;main.c: 140: }
-"140
+[; ;main.c: 141: }
+[; ;main.c: 142: }
+"142
 [e :UE 1718 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"142
+"144
 [v _main `(v ~T0 @X0 1 ef ]
-"143
+"145
 {
-[; ;main.c: 142: void main(void)
-[; ;main.c: 143: {
+[; ;main.c: 144: void main(void)
+[; ;main.c: 145: {
 [e :U _main ]
 [f ]
-[; ;main.c: 145: SYSTEM_Initialize();
-"145
+[; ;main.c: 147: SYSTEM_Initialize();
+"147
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 164: (INTCONbits.GIE = 1);
-"164
+[; ;main.c: 166: (INTCONbits.GIE = 1);
+"166
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 170: (INTCONbits.PEIE = 1);
-"170
+[; ;main.c: 172: (INTCONbits.PEIE = 1);
+"172
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 175: PIN_MANAGER_Initialize();
-"175
+[; ;main.c: 177: PIN_MANAGER_Initialize();
+"177
 [e ( _PIN_MANAGER_Initialize ..  ]
-[; ;main.c: 176: ADC_Initialize();
-"176
-[e ( _ADC_Initialize ..  ]
-[; ;main.c: 178: while (1)
+[; ;main.c: 178: ADC_Initialize();
 "178
+[e ( _ADC_Initialize ..  ]
+[; ;main.c: 180: while (1)
+"180
 [e :U 1724 ]
-[; ;main.c: 179: {
-"179
+[; ;main.c: 181: {
+"181
 {
-[; ;main.c: 183: drawToLeds();
-"183
+[; ;main.c: 185: drawToLeds();
+"185
 [e ( _drawToLeds ..  ]
-"260
+[; ;main.c: 186: toRedrawLeds = 0;
+"186
+[e = _toRedrawLeds -> -> 0 `i `uc ]
+"188
+[v _ledPositionToSend `uc ~T0 @X0 1 a ]
+"189
+[v _dummyRead `uc ~T0 @X0 1 a ]
+[; ;main.c: 188: uint8_t ledPositionToSend;
+[; ;main.c: 189: uint8_t dummyRead;
+[; ;main.c: 191: while(!toRedrawLeds)
+"191
+[e $U 1726  ]
+[e :U 1727 ]
+[; ;main.c: 192: {
+"192
+{
+[; ;main.c: 193: ledPositionToSend = SPI2_Exchange8bit(0b11100011);
+"193
+[e = _ledPositionToSend ( _SPI2_Exchange8bit (1 -> -> 227 `i `uc ]
+[; ;main.c: 194: if(ledPositionToSend < 8)
+"194
+[e $ ! < -> _ledPositionToSend `i -> 8 `i 1729  ]
+[; ;main.c: 195: dummyRead = SPI2_Exchange8bit((uint8_t)(tcrt[ledPositionToSend] >> 8));
+"195
+[e = _dummyRead ( _SPI2_Exchange8bit (1 -> >> *U + &U _tcrt * -> _ledPositionToSend `ux -> -> # *U &U _tcrt `ui `ux -> 8 `i `uc ]
+[e :U 1729 ]
+"196
+}
+[e :U 1726 ]
+"191
+[e $ ! != -> _toRedrawLeds `i -> -> -> 0 `i `uc `i 1727  ]
+[e :U 1728 ]
+"271
 }
 [e :U 1723 ]
-"178
+"180
 [e $U 1724  ]
 [e :U 1725 ]
-[; ;main.c: 260: }
-[; ;main.c: 261: }
-"261
+[; ;main.c: 196: }
+[; ;main.c: 271: }
+[; ;main.c: 272: }
+"272
 [e :UE 1722 ]
 }

@@ -8576,6 +8576,8 @@ bool SPI2_HasReceiveOverflowOccured(void);
 void SPI2_ClearReceiveOverflowStatus(void);
 
 # 63 "mcc_generated_files/spi2.c"
+extern uint8_t toRedrawLeds;
+
 void SPI2_Initialize(void)
 {
 
@@ -8599,7 +8601,7 @@ SSP2CON1bits.WCOL = 0;
 
 SSP2BUF = data;
 
-while(SSP2STATbits.BF == 0x0)
+while(SSP2STATbits.BF == 0x0 && !toRedrawLeds)
 {
 }
 
