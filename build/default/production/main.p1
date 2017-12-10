@@ -13622,25 +13622,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 194: if(ledPositionToSend < 8)
 "194
 [e $ ! < -> _ledPositionToSend `i -> 8 `i 1729  ]
-[; ;main.c: 195: dummyRead = SPI2_Exchange8bit((uint8_t)(tcrt[ledPositionToSend] >> 8));
+[; ;main.c: 195: {
 "195
-[e = _dummyRead ( _SPI2_Exchange8bit (1 -> >> *U + &U _tcrt * -> _ledPositionToSend `ux -> -> # *U &U _tcrt `ui `ux -> 8 `i `uc ]
-[e :U 1729 ]
+{
+[; ;main.c: 196: dummyRead = SPI2_Exchange8bit((uint8_t)(tcrt[ledPositionToSend] >> 8));
 "196
+[e = _dummyRead ( _SPI2_Exchange8bit (1 -> >> *U + &U _tcrt * -> _ledPositionToSend `ux -> -> # *U &U _tcrt `ui `ux -> 8 `i `uc ]
+[; ;main.c: 197: if(dummyRead<8)
+"197
+[e $ ! < -> _dummyRead `i -> 8 `i 1730  ]
+[; ;main.c: 198: dummyRead = SPI2_Exchange8bit((uint8_t)(tcrt[ledPositionToSend] >> 8));
+"198
+[e = _dummyRead ( _SPI2_Exchange8bit (1 -> >> *U + &U _tcrt * -> _ledPositionToSend `ux -> -> # *U &U _tcrt `ui `ux -> 8 `i `uc ]
+[e :U 1730 ]
+"199
+}
+[e :U 1729 ]
+"200
 }
 [e :U 1726 ]
 "191
 [e $ ! != -> _toRedrawLeds `i -> -> -> 0 `i `uc `i 1727  ]
 [e :U 1728 ]
-"271
+"275
 }
 [e :U 1723 ]
 "180
 [e $U 1724  ]
 [e :U 1725 ]
-[; ;main.c: 196: }
-[; ;main.c: 271: }
-[; ;main.c: 272: }
-"272
+[; ;main.c: 199: }
+[; ;main.c: 200: }
+[; ;main.c: 275: }
+[; ;main.c: 276: }
+"276
 [e :UE 1722 ]
 }
