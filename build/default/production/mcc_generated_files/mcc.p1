@@ -3,12 +3,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTERRUPT_Initialize `(v ~T0 @X0 0 ef ]
 "469 mcc_generated_files/pin_manager.h
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
-"84 mcc_generated_files/mcc.h
+"85 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
 "116 mcc_generated_files/spi2.h
 [v _SPI2_Initialize `(v ~T0 @X0 0 ef ]
 "250 mcc_generated_files/ext_int.h
 [v _EXT_INT_Initialize `(v ~T0 @X0 0 ef ]
+"58 mcc_generated_files/ccp5.h
+[v _CCP5_Initialize `(v ~T0 @X0 0 ef ]
 "142 mcc_generated_files/adc.h
 [v _ADC_Initialize `(v ~T0 @X0 0 ef ]
 "16010 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f45k22.h
@@ -6675,6 +6677,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
 [; ;interrupt_manager.h: 122: void INTERRUPT_Initialize (void);
+[; ;ccp5.h: 58: void CCP5_Initialize(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -6701,12 +6710,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 231: bool ADC_IsConversionDone();
 [; ;adc.h: 264: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 294: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
 [; ;spi2.h: 116: void SPI2_Initialize(void);
@@ -6717,8 +6720,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;spi2.h: 263: void SPI2_ClearWriteCollisionStatus(void);
 [; ;spi2.h: 288: bool SPI2_HasReceiveOverflowOccured(void);
 [; ;spi2.h: 312: void SPI2_ClearReceiveOverflowStatus(void);
-[; ;mcc.h: 71: void SYSTEM_Initialize(void);
-[; ;mcc.h: 84: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 72: void SYSTEM_Initialize(void);
+[; ;mcc.h: 85: void OSCILLATOR_Initialize(void);
 "111 mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
 "112
@@ -6742,31 +6745,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 118: EXT_INT_Initialize();
 "118
 [e ( _EXT_INT_Initialize ..  ]
-[; ;mcc.c: 119: ADC_Initialize();
+[; ;mcc.c: 119: CCP5_Initialize();
 "119
-[e ( _ADC_Initialize ..  ]
-[; ;mcc.c: 120: }
+[e ( _CCP5_Initialize ..  ]
+[; ;mcc.c: 120: ADC_Initialize();
 "120
+[e ( _ADC_Initialize ..  ]
+[; ;mcc.c: 121: }
+"121
 [e :UE 847 ]
 }
-"122
-[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
 "123
+[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
+"124
 {
-[; ;mcc.c: 122: void OSCILLATOR_Initialize(void)
-[; ;mcc.c: 123: {
+[; ;mcc.c: 123: void OSCILLATOR_Initialize(void)
+[; ;mcc.c: 124: {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-[; ;mcc.c: 125: OSCCON = 0x70;
-"125
+[; ;mcc.c: 126: OSCCON = 0x70;
+"126
 [e = _OSCCON -> -> 112 `i `uc ]
-[; ;mcc.c: 127: OSCCON2 = 0x04;
-"127
+[; ;mcc.c: 128: OSCCON2 = 0x04;
+"128
 [e = _OSCCON2 -> -> 4 `i `uc ]
-[; ;mcc.c: 129: OSCTUNE = 0x00;
-"129
-[e = _OSCTUNE -> -> 0 `i `uc ]
-[; ;mcc.c: 130: }
+[; ;mcc.c: 130: OSCTUNE = 0x00;
 "130
+[e = _OSCTUNE -> -> 0 `i `uc ]
+[; ;mcc.c: 131: }
+"131
 [e :UE 848 ]
 }

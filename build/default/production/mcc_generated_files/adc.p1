@@ -6657,9 +6657,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.c: 66: ADCON1 = 0x00;
 "66
 [e = _ADCON1 -> -> 0 `i `uc ]
-[; ;adc.c: 69: ADCON2 = 0x00;
+[; ;adc.c: 69: ADCON2 = 0x0D;
 "69
-[e = _ADCON2 -> -> 0 `i `uc ]
+[e = _ADCON2 -> -> 13 `i `uc ]
 [; ;adc.c: 72: ADRESL = 0x00;
 "72
 [e = _ADRESL -> -> 0 `i `uc ]

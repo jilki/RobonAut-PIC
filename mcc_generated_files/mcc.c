@@ -116,6 +116,7 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     SPI2_Initialize();
     EXT_INT_Initialize();
+    CCP5_Initialize();
     ADC_Initialize();
 }
 

@@ -50,8 +50,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "interrupt_manager.h"
-#include "adc.h"
+#include "ccp5.h"
 #include "ext_int.h"
+#include "adc.h"
 #include "spi2.h"
 
 #define _XTAL_FREQ  16000000

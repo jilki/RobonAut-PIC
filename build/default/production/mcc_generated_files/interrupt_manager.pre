@@ -8557,6 +8557,27 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdbool.h"
 typedef unsigned char bool;
 
+# 58 "mcc_generated_files/ccp5.h"
+void CCP5_Initialize(void);
+
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+
+# 272
+void INT0_ISR(void);
+
+# 296
+void INT0_CallBack(void);
+
+# 319
+void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 343
+extern void (*INT0_InterruptHandler)(void);
+
+# 367
+void INT0_DefaultInterruptHandler(void);
+
 # 71 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
 
@@ -8601,24 +8622,6 @@ adc_result_t ADC_GetConversionResult(void);
 # 294
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT0_ISR(void);
-
-# 296
-void INT0_CallBack(void);
-
-# 319
-void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 343
-extern void (*INT0_InterruptHandler)(void);
-
-# 367
-void INT0_DefaultInterruptHandler(void);
-
 # 4 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\__size_t.h"
 typedef unsigned size_t;
 
@@ -8649,10 +8652,10 @@ bool SPI2_HasReceiveOverflowOccured(void);
 # 312
 void SPI2_ClearReceiveOverflowStatus(void);
 
-# 71 "mcc_generated_files/mcc.h"
+# 72 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 84
+# 85
 void OSCILLATOR_Initialize(void);
 
 # 51 "mcc_generated_files/interrupt_manager.c"

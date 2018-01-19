@@ -6621,6 +6621,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;ccp5.h: 58: void CCP5_Initialize(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -6647,12 +6654,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 231: bool ADC_IsConversionDone();
 [; ;adc.h: 264: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 294: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
 [; ;spi2.h: 116: void SPI2_Initialize(void);
@@ -6663,8 +6664,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;spi2.h: 263: void SPI2_ClearWriteCollisionStatus(void);
 [; ;spi2.h: 288: bool SPI2_HasReceiveOverflowOccured(void);
 [; ;spi2.h: 312: void SPI2_ClearReceiveOverflowStatus(void);
-[; ;mcc.h: 71: void SYSTEM_Initialize(void);
-[; ;mcc.h: 84: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 72: void SYSTEM_Initialize(void);
+[; ;mcc.h: 85: void OSCILLATOR_Initialize(void);
 "51 mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize `(v ~T0 @X0 1 ef ]
 "52

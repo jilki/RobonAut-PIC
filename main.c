@@ -44,7 +44,7 @@
 */
 
 #include <xc.h>
-#include <pic18f43k22.h>
+#include <pic18f45k22.h>
 #include "mcc_generated_files/mcc.h"
 
 /*
@@ -59,6 +59,7 @@ void sendOverSpi(void);
 void setLed(int pos, int value);
 void setTCRT(int pos, int value);
 void main(void);
+uint8_t ledValues;
 
 uint8_t toRedrawLeds = 0;
 
@@ -99,35 +100,70 @@ void setLed(int pos, int value)
     {
         case 0:
             IO_RC4_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b00000001;
+            else
+                ledValues = ledValues & 0b11111110;  
             break;
         case 1:
             IO_RD5_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b00000010;
+            else
+                ledValues = ledValues & 0b11111101;  
             break;
         case 2:
             IO_RB1_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b00000100;
+            else
+                ledValues = ledValues & 0b11111011;  
             break;
         case 3:
             IO_RD2_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b00001000;
+            else
+                ledValues = ledValues & 0b11110111;  
             break;
         case 4:
             IO_RA0_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b00010000;
+            else
+                ledValues = ledValues & 0b11101111;  
             break;
         case 5:
             IO_RA3_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b00100000;
+            else
+                ledValues = ledValues & 0b11011111;  
             break;
         case 6:
             IO_RE0_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b01000000;
+            else
+                ledValues = ledValues & 0b10111111;  
             break;
         case 7:
             IO_RC1_LAT = value;
+            if(value)
+                ledValues = ledValues | 0b10000000;
+            else
+                ledValues = ledValues & 0b01111111;  
             break;            
     }
 }
 
 void drawToLeds()
 {
-    for(int i = 0; i<8; i++)
+    ledValues = 0;
+    for(int i = 0; i<8; i++){
+//        ledValues = ledValues + ((uint8_t)((tcrt[i]<TRESHOLD))<<i);
         setLed(i, tcrt[i]<TRESHOLD);
+    }
 }
 
 void sendOverSpi()
@@ -190,13 +226,15 @@ void main(void)
         
         while(!toRedrawLeds)
         {
-            ledPositionToSend = SPI2_Exchange8bit(0b11100011);
-            if(ledPositionToSend < 8)
+            ledPositionToSend = SPI2_Exchange8bit(ledValues);
+            
+            //ledPositionToSend = SPI2_Exchange8bit(0b11100011);
+            /*if(ledPositionToSend < 8)
             {
                 dummyRead = SPI2_Exchange8bit((uint8_t)(tcrt[ledPositionToSend] >> 8));
                 if(dummyRead<8)
                     dummyRead = SPI2_Exchange8bit((uint8_t)(tcrt[ledPositionToSend] >> 8));
-            }
+            }*/
         }
         //IO_RC4_SetHigh();
 /*        IO_RC5_SetHigh();

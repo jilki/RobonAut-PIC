@@ -28,7 +28,7 @@
 #include <xc.h>
 #include "ext_int.h"
 //***User Area Begin->code: Add External Interrupt handler specific headers 
-#include <pic18f43k22.h>
+#include <pic18f45k22.h>
 #include "mcc.h"
 
 extern uint16_t tcrt[8];
